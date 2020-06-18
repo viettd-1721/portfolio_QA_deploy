@@ -1,0 +1,16 @@
+.app {
+    background: white;
+    margin: 0;
+}
+
+.app-title {
+    text-align: center;
+    color: blue;
+    background: aqua;
+}
+
+.current_brach {
+    font-size: 16px;
+    line-height: 24px;
+    background: greenyellow;
+}
