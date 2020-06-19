@@ -1,15 +1,15 @@
-// This file is required by the index.html file and will
-// be executed in the renderer process for that window.
-// No Node.js APIs are available in this process because
-// `nodeIntegration` is turned off. Use `preload.js` to
-// process.
-var shell = require('./helper/shellHelper');
+var shell = require('./helper/shell_helper');
 
-update_current_branch();
+shell.exec('cat ~/Projects/portfolio_QA_deploy/bash_script/current_branch.sh |  ssh -T -i ~/Downloads/key/scp_nopass ta.duy.anh@10.0.1.8')
 
-// selectively enable features needed in the rendering
-function update_current_branch() {
-  document.getElementById('current_branch').innerHTML = 'testttttttttt'
+const { ipcRenderer } = require('electron')
+
+ipcRenderer.on('executed-reply', (event, arg) => {
+  console.log('ddd')
+  console.log(arg)
+  update_current_branch(arg.result.data)
+})
+
+function update_current_branch(branch_name) {
+  document.getElementById('current_branch').innerHTML = branch_name;
 }
-
-shell.exec('touch ~/dcmm.test')

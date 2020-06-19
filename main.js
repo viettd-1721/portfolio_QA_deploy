@@ -38,6 +38,20 @@ app.whenReady().then(() => {
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+
+
+  // In main process.
+  const { ipcMain } = require('electron')
+
+  ipcMain.on('executed-message', (event, arg) => {
+    console.log(arg)
+    event.returnValue = arg;
+  })
+
+  ipcMain.on('executed-message', (event, arg) => {
+    console.log(arg) // prints "ping"
+    event.reply('executed-reply', arg)
+  })
 })
 
 app.on('window-all-closed', function () {
