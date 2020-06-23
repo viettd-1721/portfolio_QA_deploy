@@ -13,3 +13,9 @@ ipcRenderer.on('executed-reply', (event, arg) => {
 function update_current_branch(branch_name) {
   document.getElementById('current_branch').innerHTML = branch_name;
 }
+
+var deploy_type_element = document.getElementById("deploy_type");
+
+deploy_type_element.addEventListener("change", function() {
+  console.log(deploy_type_element.value)
+});

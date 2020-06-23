@@ -16,20 +16,43 @@
       <table class="server-info">
         <tbody>
           <tr>
-            <td>Current brach</td>
-            <td class="current_brach" id="current_branch">test</td>
+            <td><b>Current brach</b></td>
+            <td class="current_brach" id="current_branch">N/A</td>
+          </tr>
+          <tr>
+            <td><b>Deploy</b></td>
+            <td class="">
+              <select id="deploy_type">
+                <option value="pr_id">Use pull request id</option>
+                <option value="branch_name">Use branch name</option>
+              </select> |
+              <lable>PR id</lable>
+              <input type="text" name="pr_id" id="">
+              <button>Submit</button>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Reset</b></td>
+            <td class="">
+              <button>Backend</button> |
+              <button>Frontend</button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
 
 
-    <b>Lastest command</b>
-    <pre><code class="last_command"></code></pre>
+    <hr>
+    <div class="lastest-command">
+      <b>Lastest command</b>
+      <p id="lastest_command">dddd</p>
+    </div>
 
-
-    <b>Bash Script</b>
-    <textarea rows="20" cols="86" id="command-output" disabled="true"></textarea>
+    <div class="command-list">
+      <b>Bash Script</b>
+      <textarea rows="20" cols="86" id="command-output" disabled="true"></textarea>
+    </div>
     <script src="./renderer.js"></script>
   </body>
 </html>
