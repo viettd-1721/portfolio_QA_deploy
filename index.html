@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <link rel="stylesheet" type="text/css" href="./styles/home.css">
-<!--    <script src="./app.js"></script>-->
+    <script src="./app.js"></script>
   </head>
   <body class="app">
     <div class="app-title">
@@ -26,9 +26,9 @@
                 <option value="pr_id">Use pull request id</option>
                 <option value="branch_name">Use branch name</option>
               </select> |
-              <lable>PR id</lable>
-              <input type="text" name="pr_id" id="">
-              <button>Submit</button>
+              <lable id="deploy_type_info">PR id</lable>
+              <input type="text" id="deploy_value" name="deploy_value" id="">
+              <button id="submit_deploy" disabled>Submit</button>
             </td>
           </tr>
           <tr>

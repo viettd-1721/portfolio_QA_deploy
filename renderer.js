@@ -15,7 +15,33 @@ function update_current_branch(branch_name) {
 }
 
 var deploy_type_element = document.getElementById("deploy_type");
+var deploy_value_element = document.getElementById("deploy_value");
+var deploy_type_info_element = document.getElementById("deploy_type_info");
+var submit_deploy_element = document.getElementById("submit_deploy");
 
+var deploy_type = deploy_type_element.value
 deploy_type_element.addEventListener("change", function() {
+  deploy_type = deploy_type_element.value;
   console.log(deploy_type_element.value)
+
+  if(deploy_type == 'pr_id') {
+    deploy_type_info_element.innerText = 'PR id'
+  }
+  else{
+    deploy_type_info_element.innerText = 'Branch name'
+  }
 });
+
+var deploy_value = deploy_value_element.value;
+
+deploy_value_element.addEventListener("input", function () {
+
+  console.log(deploy_value)
+  console.log(isBlank(deploy_value))
+  deploy_value = deploy_value_element.value;
+  if(isBlank(deploy_value)){
+    submit_deploy_element.disabled = true;
+  }else {
+    submit_deploy_element.disabled = false;
+  }
+})
