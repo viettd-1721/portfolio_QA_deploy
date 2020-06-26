@@ -5,8 +5,6 @@ shell.exec('cat ~/Projects/portfolio_QA_deploy/bash_script/current_branch.sh |  
 const { ipcRenderer } = require('electron')
 
 ipcRenderer.on('executed-reply', (event, arg) => {
-  console.log('ddd')
-  console.log(arg)
   update_current_branch(arg.result.data)
 })
 
@@ -22,7 +20,6 @@ var submit_deploy_element = document.getElementById("submit_deploy");
 var deploy_type = deploy_type_element.value
 deploy_type_element.addEventListener("change", function() {
   deploy_type = deploy_type_element.value;
-  console.log(deploy_type_element.value)
 
   if(deploy_type == 'pr_id') {
     deploy_type_info_element.innerText = 'PR id'
@@ -36,8 +33,6 @@ var deploy_value = deploy_value_element.value;
 
 deploy_value_element.addEventListener("input", function () {
 
-  console.log(deploy_value)
-  console.log(isBlank(deploy_value))
   deploy_value = deploy_value_element.value;
   if(isBlank(deploy_value)){
     submit_deploy_element.disabled = true;

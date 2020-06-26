@@ -1,11 +1,11 @@
-// Modules to control application life and create native browser window
-const { app, Menu, BrowserWindow } = require('electron')
+const { app, Menu, BrowserWindow, dialog } = require('electron')
 const path = require('path')
 let menuConfig = require("./settings/menu/menu");
+
 var is = require("electron-is");
 require('electron-reload')(__dirname);
 
-
+const fs = require('fs');
 
 function createWindow () {
   const mainWindow = new BrowserWindow({
@@ -39,17 +39,13 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 
-
-  // In main process.
   const { ipcMain } = require('electron')
 
   ipcMain.on('executed-message', (event, arg) => {
-    console.log(arg)
     event.returnValue = arg;
   })
 
   ipcMain.on('executed-message', (event, arg) => {
-    console.log(arg) // prints "ping"
     event.reply('executed-reply', arg)
   })
 })
@@ -57,3 +53,42 @@ app.whenReady().then(() => {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
+
+exports.getFileFromUser = (targetWindow) => {
+  const files = dialog.showOpenDialog(targetWindow, {
+    properties: ['openFile']});
+
+  files.then(
+      result => {
+        if(result.filePaths.length > 0) {
+          const content = fs.readFileSync('./settings/ssh_info.json').toString();
+          const ssh_data = JSON.parse(content)
+          ssh_data.path_key = result.filePaths[0];
+          fs.writeFileSync('./settings/ssh_info.json', JSON.stringify(ssh_data));
+
+          dialog.showMessageBox(targetWindow, {
+            title: 'Updated success',
+            type: 'info',
+            message: 'The file has been imported successfully, please update it again if you move it elsewhere'
+          })
+
+        } else {
+
+        }
+      }).catch(err => {
+
+      })
+};
+
+exports.getPasword = (targetWindow) => {
+  const password_port = new BrowserWindow({
+    width: 200,
+    height: 100,
+    webPreferences: {
+      nodeIntegration: true,
+    }
+  })
+  password_port.setMenu(null)
+  password_port.setResizable(false)
+  password_port.loadFile('./components/password_prompt/index.html')
+};

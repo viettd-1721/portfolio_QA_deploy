@@ -1,4 +1,6 @@
 const isMac = process.platform === 'darwin'
+const mainProcess = require('../../main');
+
 
 module.exports = {
   template:
@@ -20,9 +22,23 @@ module.exports = {
       }] : []),
       // { role: 'fileMenu' }
       {
-        label: 'File',
+        label: 'Settings',
         submenu: [
-          isMac ? {role: 'close'} : {role: 'quit'}
+          isMac ? {role: 'close'} : {role: 'quit'},
+          {
+            label: 'Open File',
+            accelerator: 'CommandOrControl+O',
+            click(item, focusedWindow) {
+              mainProcess.getFileFromUser(focusedWindow);
+            },
+          },
+          {
+            label: 'Update User server password',
+            accelerator: 'CommandOrControl+P',
+            click(item, focusedWindow) {
+              mainProcess.getPasword(focusedWindow);
+            },
+          },
         ]
       },
       // { role: 'viewMenu' }
