@@ -14,3 +14,18 @@
     line-height: 24px;
     background: greenyellow;
 }
+
+.server-info {
+
+}
+
+td {
+    height: 40px;
+}
+
+#deploy_type_info {
+    min-width : 100px;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

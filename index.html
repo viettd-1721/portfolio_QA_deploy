@@ -6,30 +6,53 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <link rel="stylesheet" type="text/css" href="./styles/home.css">
+    <script src="./app.js"></script>
   </head>
   <body class="app">
     <div class="app-title">
       <h2>Classi Portfolio</h2>
     </div>
     <div class="app-content">
-      <h1>Hello World!</h1>
-      We are using node <script>document.write(process.versions.node)</script>,
-      Chrome <script>document.write(process.versions.chrome)</script>,
-      and Electron <script>document.write(process.versions.electron)</script>.
-
       <table class="server-info">
         <tbody>
           <tr>
-            <td>Current brach</td>
-            <td class="current_brach" id="current_branch">test</td>
+            <td><b>Current brach</b></td>
+            <td class="current_brach" id="current_branch">N/A</td>
+          </tr>
+          <tr>
+            <td><b>Deploy</b></td>
+            <td class="">
+              <select id="deploy_type">
+                <option value="pr_id">Use pull request id</option>
+                <option value="branch_name">Use branch name</option>
+              </select> |
+              <lable id="deploy_type_info">PR id</lable>
+              <input type="text" id="deploy_value" name="deploy_value" id="">
+              <button id="submit_deploy" disabled>Submit</button>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Reset</b></td>
+            <td class="">
+              <button>Backend</button> |
+              <button>Frontend</button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
 
 
-    <b>Bash Script</b>
-    <textarea rows="20" cols="86" id="command-output" disabled="true"></textarea>
+    <hr>
+    <div class="lastest-command">
+      <b>Lastest command</b>
+      <p id="lastest_command">dddd</p>
+    </div>
+
+    <div class="command-list">
+      <b>Bash Script</b>
+      <textarea rows="20" cols="86" id="command-output" disabled="true"></textarea>
+    </div>
     <script src="./renderer.js"></script>
   </body>
 </html>
